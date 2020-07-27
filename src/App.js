@@ -12,8 +12,11 @@ import windy from "./images/windy.png";
 // import arrow from "./images/arrow.png";
 // import humidity from "./images/humidity.png";
 import CircleLoader from "react-spinners/CircleLoader";
+// **************************************************************
+
+const apiKey = process.env.REACT_APP_KEY;
 const api = {
-  key: "67b10bbf46e6fecb07c0365d103c7e1f",
+  key: apiKey,
   base: "https://api.openweathermap.org/data/2.5/"
 };
 
@@ -33,8 +36,14 @@ function MyModal(props) {
       `${api.base}weather?q=${query}&units=imperial&APPID=${api.key}`
     );
     const json = await response.json();
-    setCurrent(json);
-    setCoord(json.coord);
+    if (json.cod !== "404") {
+      setCurrent(json);
+      setCoord(json.coord);
+    } else {
+      alert("Oops, city not found! try again..");
+      setQuery("");
+      return;
+    }
     setQuery("");
   }
   useEffect(() => {
@@ -50,6 +59,7 @@ function MyModal(props) {
     }
     return;
   }, [coord, setWeather]);
+
   const search = evt => {
     if (evt.key === "Enter") {
       fetchCoords();
@@ -81,7 +91,11 @@ function MyModal(props) {
         </Button>
       </Modal.Header>
       <Modal.Title
-        style={{ fontSize: "1.5rem", textAlign: "center" }}
+        style={{
+          fontSize: "1.5rem",
+          textAlign: "center",
+          fontFamily: "Montserrat sans-serif"
+        }}
         id="contained-modal-title-vcenter"
       >
         Choose a city ?
@@ -93,7 +107,8 @@ function MyModal(props) {
             borderRadius: "25px",
             outline: "none",
             height: "40px",
-            textAlign: "center"
+            textAlign: "center",
+            fontFamily: "Montserrat sans-serif"
           }}
           type="text"
           className="search-box"
@@ -164,7 +179,6 @@ function App(props) {
   const day = days[now.getDay()];
 
   const weatherStatus = current !== null ? current.weather[0].main : null;
-
   //unix time to future date converter
   const weekDays = unix => {
     const milliseconds = unix * 1000;
@@ -204,7 +218,7 @@ function App(props) {
         return;
     }
   };
-  console.log(weather);
+
   const weatherImage = checkWeather(weatherStatus);
 
   return (
