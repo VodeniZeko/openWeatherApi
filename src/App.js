@@ -14,9 +14,8 @@ import windy from "./images/windy.png";
 import CircleLoader from "react-spinners/CircleLoader";
 // **************************************************************
 
-const apiKey = process.env.REACT_APP_KEY;
 const api = {
-  key: apiKey,
+  key: "67b10bbf46e6fecb07c0365d103c7e1f",
   base: "https://api.openweathermap.org/data/2.5/"
 };
 
