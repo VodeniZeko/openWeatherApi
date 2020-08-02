@@ -132,6 +132,7 @@ function App(props) {
       .then(res => setCurrent(res.data));
   }, []);
 
+  console.log(weather);
   //curent date builder
   const dateBuilder = d => {
     let months = [

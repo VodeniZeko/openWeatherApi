@@ -71,12 +71,13 @@ body {
     margin-top: 20%;
     height: 100%;
     border-radius: 25px;
-    width: 430px;
+    width: 380px;
     box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);
     transition: transform 300ms ease;
     transform: translateZ(0) scale(1.02) perspective(1000px);
-    background-size: 100% 90%;
+    background-size: contain;
     float: none;
+    background-repeat: no-repeat;
   }
 }
 
@@ -94,6 +95,12 @@ body {
   background-image: var(--gradient);
   border-radius: 25px;
   opacity: 0.8;
+}
+
+@media only screen and (max-width: 758px) {
+  .weather-gradient {
+    background-image: none;
+  }
 }
 
 .date-container {
@@ -157,16 +164,16 @@ body {
   border-radius: 10px;
 }
 
-.today-info > div:not(:last-child) {
+.today-info>div:not(:last-child) {
   margin: 0 0 10px 0;
 }
 
-.today-info > div .title {
+.today-info>div .title {
   float: left;
   font-weight: 700;
 }
 
-.today-info > div .value {
+.today-info>div .value {
   float: right;
 }
 
@@ -180,7 +187,7 @@ body {
   background: #;
 }
 
-.week-list > li {
+.week-list>li {
   float: left;
   padding: 15px;
   cursor: pointer;
@@ -190,7 +197,7 @@ body {
   border-radius: 10px;
 }
 
-.week-list > li:hover {
+.week-list>li:hover {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
@@ -200,26 +207,26 @@ body {
   box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.2);
 }
 
-.week-list > li.active {
+.week-list>li.active {
   background: #fff;
   color: #222831;
   border-radius: 10px;
 }
 
-.week-list > li .day-name {
+.week-list>li .day-name {
   display: block;
   margin: 10px 0 0 0;
   text-align: center;
 }
 
-.week-list > li .day-icon {
+.week-list>li .day-icon {
   display: block;
   height: 30px;
   width: auto;
   margin: 0 auto;
 }
 
-.week-list > li .day-temp {
+.week-list>li .day-temp {
   display: block;
   text-align: center;
   margin: 10px 0 0 0;
